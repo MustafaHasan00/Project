@@ -1,6 +1,6 @@
 package Keke;
 
-import java.applet.Applet;
+
 
 import javafx.application.Application;
 import javafx.scene.Scene;
