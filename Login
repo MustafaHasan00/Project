@@ -1,1 +1,77 @@
+package Keke;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Login extends Application {
+
+public void start(Stage loginStage) throws Exception {
+	
+    	  try {
+
+    		  File logFile = new File("src/Keke/USERS.txt");
+    		  Scanner sc = new Scanner(logFile);
+    		  String name = "";
+    		  String password = "";
+    		  String names [] = new String[20];
+    		  String passwords [] = new String[20];
+    		  int i = 0;
+    		  while (sc.hasNextLine()) {
+    		  String Test = sc.nextLine();
+              String[] logSplit = Test.split(" ");
+              name = logSplit[0];
+              password = logSplit[1];
+              names[i] = name;
+              passwords[i] = password;
+              i++;
+    		  }
+    		  TextField userUsername = new TextField();
+              userUsername.setPromptText("put your name here");
+              TextField userPassWord = new TextField();
+              userPassWord.setPromptText("put the password here");
+              Button LogButton = new Button("login");
+              StackPane firstSP = new StackPane(LogButton);
+              VBox root = new VBox(10, userUsername, userPassWord, LogButton);
+              Scene firstSc = new Scene (root,400,300);
+              loginStage.setScene(firstSc);
+              loginStage.setTitle("login");
+              loginStage.show();
+              LogButton.setOnAction(e -> {
+        		  int good = 0;
+            	  for (int j = 0; j < passwords.length; j++) {
+            		  if(userUsername.getText().equals(names[j]) && userPassWord.getText().equals(passwords[j]))
+            			  good++;
+				}
+            	 if (good >= 1)
+            		wrong("congract");   //text
+            	 else
+                    wrong("wrong userName or password");
+            	 
+            	  });
+    		  sc.close();
+    	  }
+    	  catch (Exception e) {
+    		  System.out.print("opps");
+    		  e.printStackTrace();
+    	  }
+      }
+     
+      public void wrong(String message) {
+    	  Alert alert = new Alert(Alert.AlertType.WARNING);
+  		alert.setHeaderText(null);
+  		alert.setContentText(message);
+  		alert.showAndWait();
+      }
+      public static void main(String[] args) {
+    		Application.launch(args);    
+    	}
+}
 
