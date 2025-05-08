@@ -3,6 +3,8 @@ package Keke;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -11,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Login extends Application {
+public class Login extends Main {
 
 public void start(Stage loginStage) throws Exception {
 	
@@ -35,7 +37,7 @@ public void start(Stage loginStage) throws Exception {
     		  }
     		  TextField userUsername = new TextField();
               userUsername.setPromptText("put your name here");
-              TextField userPassWord = new TextField();
+              PasswordField userPassWord = new PasswordField();
               userPassWord.setPromptText("put the password here");
               Button LogButton = new Button("login");
               StackPane firstSP = new StackPane(LogButton);
@@ -43,6 +45,11 @@ public void start(Stage loginStage) throws Exception {
               Scene firstSc = new Scene (root,400,300);
               loginStage.setScene(firstSc);
               loginStage.setTitle("login");
+              firstSc.setOnKeyPressed(e -> {
+            	    if (e.getCode() == KeyCode.ENTER) {
+            	        LogButton.fire();
+            	    }
+            	});
               loginStage.show();
               LogButton.setOnAction(e -> {
         		  int good = 0;
@@ -51,8 +58,13 @@ public void start(Stage loginStage) throws Exception {
             			  good++;
 				}
             	 if (good >= 1)
-            		wrong("congract");   //text
-            	 else
+					try {
+						super.start(loginStage);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				else
                     wrong("wrong userName or password");
             	 
             	  });
@@ -74,4 +86,5 @@ public void start(Stage loginStage) throws Exception {
     		Application.launch(args);    
     	}
 }
+
 
