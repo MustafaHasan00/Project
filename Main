@@ -1,1 +1,22 @@
-test 
+package Keke;
+
+import java.applet.Applet;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+public class Main extends Application{
+	public void start(Stage MainStage) throws Exception {
+		Login login = new Login();
+        Label label1 = new Label("Text");
+        Scene scene = new Scene(label1 , 400,300);
+        login.start(MainStage);
+        MainStage.setScene(scene);
+        MainStage.show();
+}
+	public static void main(String args[]) {
+		Application.launch(args);
+	}
+}
