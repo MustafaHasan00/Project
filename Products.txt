@@ -1,0 +1,14 @@
+clothes Classic_White_Tee whiteT.jpeg 73 China
+clothes Classic_Black_Tee blackT.jpeg 77 China
+electronics sleek-comfort-fit-over-ear-headphones ear-headphones 48 korea
+electronics efficient-2-slice-toaster toaster.jpeg 100 Germany
+electronics sleek-wireless-computer-mouse mouse.jpeg 43 China
+electronics Phone-Case-cover cover.jpeg 27 PA
+furniture table table.jpeg 660 Palestine
+furniture Armchair Armchair.jpeg 120 Jordan
+furniture workstation workstation.jpeg 400 Turkey
+shoes sneaker sneaker.jpeg 55 China
+shoes classic-sneaker classic.jpeg 66 Palestine
+miscellaneous go-cart gocart.jpeg 255 UK
+miscellaneous perfume miscellaneous.jpeg 102 UAE
+miscellaneous olive-green-hardshell case.jpeg 160 China
