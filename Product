@@ -40,6 +40,10 @@ public class Product extends Main{
 		  e.printStackTrace();
 	  }
 	}
+public ArrayList<ProductItem> getAllProducts() {
+		return allProducts;
+	}
+
 	public void categ() {
 	    ArrayList<String[]> clothesList = new ArrayList<>();
 	    ArrayList<String[]> electronicsList = new ArrayList<>();
