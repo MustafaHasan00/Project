@@ -1,11 +1,14 @@
 package Project_142;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
@@ -23,11 +26,11 @@ public class Login {
 				this.stage=stage;
 			}
 		
-public void start(Stage loginStage) throws Exception {
+public void start(Stage MainStage) throws Exception {
 	
     	  try {
 
-    		  File logFile = new File("src/projact/USERS.txt");
+    		  File logFile = new File("C:\\Users\\Admin\\eclipse-workspace\\Testforthepro\\src\\IIIII\\USERS.txt");
     		  Scanner sc = new Scanner(logFile);
     		  String name = "";
     		  String password = "";
@@ -44,26 +47,46 @@ public void start(Stage loginStage) throws Exception {
               i++;
     		  }
 
-    		  TextField userUsername = new TextField();
-              userUsername.setPromptText("put your name here");
-              PasswordField userPassWord = new PasswordField();
-              userPassWord.setPromptText("put the password here");
-              Button LogButton = new Button("login");
-              StackPane firstSP = new StackPane(LogButton);
-              VBox root = new VBox(10, userUsername, userPassWord, LogButton);
-              Scene firstSc = new Scene (root,400,300);
-              loginStage.setScene(firstSc);
-              loginStage.setTitle("login");
-              firstSc.setOnKeyPressed(e -> {
-            	    if (e.getCode() == KeyCode.ENTER) {
-            	        LogButton.fire();
-            	    }
-            	});
-              loginStage.show();
+    		        Text titleText = new Text("FREEDOM");
+    		        titleText.setFont(Font.font("Arial", 72));
+    		        Image keffiyehPattern = new Image("file:///C:/Users/Admin/eclipse-workspace/Project_142/src/Project_142/AL.jpeg");
+    		        titleText.setFill(new ImagePattern(keffiyehPattern));
+
+    		        TextField user_name = new TextField();
+    		        user_name.setPromptText("Username");
+
+    		        PasswordField Password = new PasswordField();
+    		        Password.setPromptText("Password");
+
+    		        Button LogButton = new Button("Login");
+    		        HBox buttonBox = new HBox(LogButton);
+    		        buttonBox.setAlignment(Pos.CENTER);
+
+    		        Image flagImage = new Image("file:///C:/Users/Admin/eclipse-workspace/Project_142/src/Project_142/FLAG.jpg");
+    		        ImageView flagView = new ImageView(flagImage);
+    		        flagView.setFitWidth(380);
+    		        flagView.setPreserveRatio(true);
+
+    		        VBox root = new VBox(20, titleText, user_name, Password, buttonBox, flagView);
+    		        root.setAlignment(Pos.TOP_CENTER);
+    		        root.setStyle("-fx-padding: 20;");
+
+    		        Scene firstSc = new Scene(root, 500, 550);
+
+    		        firstSc.setOnKeyPressed(e -> {
+    		            if (e.getCode() == KeyCode.ENTER) {
+    		                LogButton.fire();
+    		            }
+    		        });
+
+    		        MainStage.setScene(firstSc);
+    		        MainStage.setTitle("FREEDOM");
+    		        MainStage.show();
+    		        
               LogButton.setOnAction(e -> {
         		  int good = 0;
             	  for (int j = 0; j < passwords.length; j++) {
-            		  if(userUsername.getText().equals(names[j]) && userPassWord.getText().equals(passwords[j]))
+            		  if(user_name.getText().equals(names[j]) && Password.getText().equals(passwords[j]))
             			  good++;
 				}
             	 if (good >= 1)
@@ -85,6 +108,8 @@ public void start(Stage loginStage) throws Exception {
     		  e.printStackTrace();
     	  }
       }
+
+
      
       public void wrong(String message) {
     	  Alert alert = new Alert(Alert.AlertType.WARNING);
