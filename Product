@@ -1,3 +1,5 @@
+package Keke;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -5,11 +7,10 @@ import javafx.stage.Stage;
 
 
 public class Product extends Main{
-	  ArrayList<String> category = new ArrayList<>();
-	  ArrayList<String> productName = new ArrayList<>();
-	  ArrayList<String> imageName = new ArrayList<>();
-	  ArrayList<String> price = new ArrayList<>();
-	  ArrayList<String> made = new ArrayList<>();
+	
+	  ArrayList<ProductItem> allProducts = new ArrayList<>();
+	
+	  
 	public void start(Stage productStage) throws Exception {
 	try {
 	 File logFile = new File("src/Keke/Products.txt");
@@ -17,7 +18,7 @@ public class Product extends Main{
 	  String Category = "";
 	  String ProductName = "";
 	  String ImageName = "";
-	  String Price = "";
+	  double Price = 0;
 	  String Made = "";
 	  while (sc.hasNextLine()) {
 	  String Test = sc.nextLine();
@@ -25,13 +26,11 @@ public class Product extends Main{
      Category = ProdSplit[0];
      ProductName = ProdSplit[1];
      ImageName = ProdSplit[2];
-     Price = ProdSplit[3];
+     Price = Double.parseDouble(ProdSplit[3]);
      Made = ProdSplit[4];
-     category.add(Category);
-     productName.add(ProductName);
-     imageName.add(ImageName);
-     price.add(Price);
-     made.add(Made);
+     ProductItem item = new ProductItem(Category, ProductName, ImageName, Price, Made);
+     allProducts.add(item);
+     
 	  }
 	  categ();
 	  
@@ -48,15 +47,14 @@ public class Product extends Main{
 	    ArrayList<String[]> shoesList = new ArrayList<>();
 	    ArrayList<String[]> miscellaneousList = new ArrayList<>();
 
-	    for (int i = 0; i < category.size(); i++) {
+	    for (ProductItem item : allProducts) {
 	        String[] product = new String[5];
-	        product[0] = category.get(i);
-	        product[1] = productName.get(i);
-	        product[2] = imageName.get(i);
-	        product[3] = price.get(i);
-	        product[4] = made.get(i);
-
-	        switch (category.get(i)) {
+	        product[0] = item.getCategory();
+	        product[1] = item.getProductName();
+	        product[2] = item.getImageName();
+	        product[3] = String.valueOf(item.getPrice());
+	        product[4] = item.getMade();
+	        switch (item.getCategory().toLowerCase()) {
 	            case "clothes":
 	                clothesList.add(product);
 	                break;
