@@ -1,28 +1,62 @@
+package Project_142;
+
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class Main extends Application{
-	public void start(Stage MainStage) throws Exception {
-		Login login = new Login(MainStage);
-       
-		
-        login.start(MainStage);
-        
-        
-        
-        MainStage.setTitle("The thing");
-       
-       
-}
-	public void showMain(Stage stage) {
-		  Label label1 = new Label("Text");
-          Scene scene = new Scene(label1 , 400,300);
-          
-          stage.setScene(scene);
-       }
-	public static void main(String args[]) {
-		Application.launch(args);
-	}
+public class Main extends Application {
+
+    @Override
+    public void start(Stage MainStage) throws Exception {
+
+        Text titleText = new Text("FREEDOM");
+        titleText.setFont(Font.font("Arial", 72));
+        Image keffiyehPattern = new Image("file:///C:/Users/Admin/eclipse-workspace/Project_142/src/Project_142/AL.jpeg");
+        titleText.setFill(new ImagePattern(keffiyehPattern));
+
+        TextField user_name = new TextField();
+        user_name.setPromptText("Username");
+
+        PasswordField password = new PasswordField();
+        password.setPromptText("Password");
+
+        Button LogButton = new Button("Login");
+        HBox buttonBox = new HBox(LogButton);
+        buttonBox.setAlignment(Pos.CENTER);
+
+        Image flagImage = new Image("file:///C:/Users/Admin/eclipse-workspace/Project_142/src/Project_142/FLAG.jpg");
+        ImageView flagView = new ImageView(flagImage);
+        flagView.setFitWidth(380);
+        flagView.setPreserveRatio(true);
+
+        VBox root = new VBox(20, titleText, user_name, password, buttonBox, flagView);
+        root.setAlignment(Pos.TOP_CENTER);
+        root.setStyle("-fx-padding: 20;");
+
+        Scene firstSc = new Scene(root, 500, 550);
+
+        firstSc.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
+                LogButton.fire();
+            }
+        });
+
+        MainStage.setScene(firstSc);
+        MainStage.setTitle("FREEDOM");
+        MainStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
