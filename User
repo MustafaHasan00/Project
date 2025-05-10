@@ -1,67 +1,76 @@
-import javafx.stage.Stage;
+package Project_142;
+
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class User extends Main {
+import javafx.application.Application;
+import javafx.stage.Stage;
 
-    private ArrayList<String> UserName = new ArrayList<String>();
-    private ArrayList<String> Password = new ArrayList<String>();
+public class User{
+	
+	protected String userName;
+	protected String password;
 
-    @Override
-    public void start(Stage loginStage) throws Exception {
+    public User(String userName, String password) {
     	
+        this.userName = userName;
+        this.password = password;
+        
+    }
+
+    public String getUserName() {
+    	
+        return userName;
+        
+    }
+
+    public String getPassword() {
+    	
+        return password;
+        
+    }
+
+    public static List<User> loadUsersFromFile() {
+    	
+        List<User> users = new ArrayList<>();
+
         try {
         	
-            File logFile = new File("C:\\Users\\Admin\\eclipse-workspace\\Project_142\\src\\Project_142\\USERS.txt");
+            File logFile = new File("C:\\\\Users\\\\Admin\\\\eclipse-workspace\\\\Project_142\\\\src\\\\Project_142\\\\USERS.txt");
             Scanner sc = new Scanner(logFile);
 
-            String name = "";
-            String password = "";
-
-            int i = 0;
-            
             while (sc.hasNextLine()) {
             	
-                String Test = sc.nextLine();
-                String[] logSplit = Test.trim().split(" ");
-
+                String line = sc.nextLine();
+                String[] logSplit = line.trim().split(" ");
+                
                 if (logSplit.length >= 2) {
                 	
-                    name = logSplit[0];
-                    password = logSplit[1];
-
-                    UserName.add(name);
-                    Password.add(password);
+                    String name = logSplit[0];
+                    String pass = logSplit[1];
+                    users.add(new User(name, pass));
                     
                 }
             }
 
-            sc.close(); 
+            sc.close();
             
         } 
         
         catch (Exception e) {
         	
             System.out.println("Oops");
-            
-            e.printStackTrace();         
+            e.printStackTrace();
             
         }
-    }
 
-    public ArrayList<String> getUserName() {
-    	
-        return UserName;
+        return users;
         
     }
 
-    public ArrayList<String> getPassword() {
-    	
-        return Password;
-        
-    }
-
-
-  
+	public static void main(String[]args) {
+		
+	}
 }
