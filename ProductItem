@@ -1,0 +1,32 @@
+package Keke;
+
+public class ProductItem {
+	private String category;
+    private String ProductName;
+    private String imageName;
+    private double price;
+    private String made;
+    public ProductItem(String category , String ProductName , String imageName , double price , String made) {
+    	this.category = category;
+    	this.ProductName = ProductName;
+    	this.imageName = imageName;
+    	this.price = price;
+    	this.made = made;
+    }
+	public String getCategory() {
+		return category;
+	}
+	public String getProductName() {
+		return ProductName;
+	}
+	public String getImageName() {
+		return imageName;
+	}
+	public double getPrice() {
+		return price;
+	}
+	public String getMade() {
+		return made;
+	}
+	
+}
