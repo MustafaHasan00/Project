@@ -61,7 +61,6 @@ public void start(Stage loginStage) throws Exception {
 					try {
 						super.start(loginStage);
 					} catch (Exception e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				else
