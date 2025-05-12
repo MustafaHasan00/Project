@@ -1,4 +1,7 @@
+
 package Keke;
+
+import javafx.scene.image.Image;
 
 public class ProductItem {
 	private String category;
@@ -6,13 +9,22 @@ public class ProductItem {
     private String imageName;
     private double price;
     private String made;
+    private Image image;
     public ProductItem(String category , String ProductName , String imageName , double price , String made) {
     	this.category = category;
     	this.ProductName = ProductName;
     	this.imageName = imageName;
     	this.price = price;
     	this.made = made;
+    	try {
+    		this.image = new Image("file:images/" + imageName);
+    	} catch (Exception e) {
+    	    System.out.println("Failed to load image: " + imageName);
+    	    e.printStackTrace();
+    	}
     }
+    
+    
 	public String getCategory() {
 		return category;
 	}
@@ -28,5 +40,6 @@ public class ProductItem {
 	public String getMade() {
 		return made;
 	}
+	
 	
 }
