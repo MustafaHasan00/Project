@@ -1,4 +1,4 @@
-package Project_142;
+package Keke;
 
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -20,17 +20,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Login {
+public class Login{
+	        private Main mainstage;
 			private Stage stage;
-			public Login(Stage stage) {
+			public Login(Stage stage , Main mainstage) {
 				this.stage=stage;
+				this.mainstage = mainstage;
 			}
+	        TextField user_name = new TextField();
 		
 public void start(Stage MainStage) throws Exception {
 	
     	  try {
 
-    		  File logFile = new File("C:\\Users\\Admin\\eclipse-workspace\\Testforthepro\\src\\IIIII\\USERS.txt");
+    		  File logFile = new File("src/Keke/USERS.txt");
     		  Scanner sc = new Scanner(logFile);
     		  String name = "";
     		  String password = "";
@@ -49,10 +52,10 @@ public void start(Stage MainStage) throws Exception {
 
     		        Text titleText = new Text("FREEDOM");
     		        titleText.setFont(Font.font("Arial", 72));
-    		        Image keffiyehPattern = new Image("file:///C:/Users/Admin/eclipse-workspace/Project_142/src/Project_142/AL.jpeg");
+    		        Image keffiyehPattern = new Image("file:\\C:\\Users\\ahmad\\eclipse-workspace\\Project\\src\\Keke\\FLAG.jpg");
     		        titleText.setFill(new ImagePattern(keffiyehPattern));
 
-    		        TextField user_name = new TextField();
+
     		        user_name.setPromptText("Username");
 
     		        PasswordField Password = new PasswordField();
@@ -62,7 +65,7 @@ public void start(Stage MainStage) throws Exception {
     		        HBox buttonBox = new HBox(LogButton);
     		        buttonBox.setAlignment(Pos.CENTER);
 
-    		        Image flagImage = new Image("file:///C:/Users/Admin/eclipse-workspace/Project_142/src/Project_142/FLAG.jpg");
+    		        Image flagImage = new Image("file:\\C:\\Users\\ahmad\\eclipse-workspace\\Project\\src\\Keke\\AL2.jpg");
     		        ImageView flagView = new ImageView(flagImage);
     		        flagView.setFitWidth(380);
     		        flagView.setPreserveRatio(true);
@@ -91,8 +94,7 @@ public void start(Stage MainStage) throws Exception {
 				}
             	 if (good >= 1)
 					try {
-						Main Main = new Main();
-						Main.showMain(stage);
+						mainstage.showMain(stage);
 					} catch (Exception e1) {
 	
 						e1.printStackTrace();
@@ -108,7 +110,9 @@ public void start(Stage MainStage) throws Exception {
     		  e.printStackTrace();
     	  }
       }
-
+public String getUSER () {
+	return user_name.getText();
+}
 
      
       public void wrong(String message) {
