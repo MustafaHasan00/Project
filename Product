@@ -10,39 +10,55 @@ public class Product extends Main{
 	
 	  
 	public void start(Stage productStage) throws Exception {
+		
 	try {
-	 File logFile = new File("src/Keke/Products.txt");
+		
+	  File logFile = new File("src/Keke/Products.txt");
 	  Scanner sc = new Scanner(logFile);
+	  
 	  String Category = "";
 	  String ProductName = "";
 	  String ImageName = "";
 	  double Price = 0;
 	  String Made = "";
+	  
 	  while (sc.hasNextLine()) {
-	  String Test = sc.nextLine();
+		  
+	 String Test = sc.nextLine();
      String[] ProdSplit = Test.split(" ");
+     
      Category = ProdSplit[0];
      ProductName = ProdSplit[1];
      ImageName = ProdSplit[2];
      Price = Double.parseDouble(ProdSplit[3]);
      Made = ProdSplit[4];
+     
      ProductItem item = new ProductItem(Category, ProductName, ImageName, Price, Made);
+     
      allProducts.add(item);
      
 	  }
+	  
 	  categ();
 	  
 	  }
+	
 	 catch (Exception e) {
+		 
 		  System.out.print("opps");
 		  e.printStackTrace();
+		  
 	  }
 	}
-public ArrayList<ProductItem> getAllProducts() {
+	
+	public ArrayList<ProductItem> getAllProducts() {
+		
 		return allProducts;
+		
 	}
 
 	public void categ() {
+		
 	    ArrayList<String[]> clothesList = new ArrayList<>();
 	    ArrayList<String[]> electronicsList = new ArrayList<>();
 	    ArrayList<String[]> furnitureList = new ArrayList<>();
@@ -50,28 +66,42 @@ public ArrayList<ProductItem> getAllProducts() {
 	    ArrayList<String[]> miscellaneousList = new ArrayList<>();
 
 	    for (ProductItem item : allProducts) {
+	    	
 	        String[] product = new String[5];
+	        
 	        product[0] = item.getCategory();
 	        product[1] = item.getProductName();
 	        product[2] = item.getImageName();
 	        product[3] = String.valueOf(item.getPrice());
 	        product[4] = item.getMade();
+	        
 	        switch (item.getCategory().toLowerCase()) {
+	        
 	            case "clothes":
+	            	
 	                clothesList.add(product);
 	                break;
+	                
 	            case "electronics":
+	            	
 	                electronicsList.add(product);
 	                break;
+	                
 	            case "furniture":
+	            	
 	                furnitureList.add(product);
 	                break;
+	                
 	            case "shoes":
+	            	
 	                shoesList.add(product);
 	                break;
+	                
 	            default:
+	            	
 	                miscellaneousList.add(product);
 	                break;
+	                
 	        }
 	    }
 	}
