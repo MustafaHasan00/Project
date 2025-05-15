@@ -38,9 +38,7 @@ public class Main extends Application{
        
 }
 	public void showMain(Stage stage) {
-		  Label label1 = new Label("Welcome to FREEDOM ✌️");
-		  label1.setFont(Font.font("Arial", 36));
-		  label1.setAlignment(Pos.CENTER);
+
 
 	        String  USER = login.getUSER();
           Label helloUser = new Label("hello " + USER);
@@ -48,7 +46,6 @@ public class Main extends Application{
           HBox HelloUser = new HBox(helloUser);
           BorderPane comf = new BorderPane();
           comf.setTop(HelloUser);
-          comf.setCenter(label1);
           HelloUser.setAlignment(Pos.TOP_CENTER);
           Scene scene = new Scene(comf, 900, 700);
           
