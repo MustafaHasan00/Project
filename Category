@@ -5,66 +5,104 @@ import java.util.Scanner;
 import javafx.stage.Stage;
 
 public class Category{
+	
 	ArrayList<String> CatNames = new ArrayList<>();
 	ArrayList<String> CatImgNames = new ArrayList<>();
+	
 	private Product producter;
 	
 	public void start(Stage categoryStage) throws Exception {
 		
 		try {
+			
 			producter = new Product();
-		} catch (Exception e) {
+			
+		} 
+		
+		catch (Exception e) {
+			
 			System.out.println("eror");
 			e.printStackTrace();
+			
 		}
+		
 		try {
+			
 			File catFile = new File("src/projact/Categories.txt");
 			Scanner sc = new Scanner(catFile);
+			
 			while(sc.hasNextLine()) {
+				
 				String stor = sc.nextLine().trim();
 				String fwasl[] = stor.split(" ");
 				CatNames.add(fwasl[0]);
 				CatImgNames.add(fwasl[1]);
 				
 			}
+			
 			sc.close();
 		}
 		
 		catch(Exception e ) {
+			
 			System.out.println("Oops");
 			e.printStackTrace();
+			
+			}
 		}
-	}
+	
 		  public List<ProductItem> getProductsByCategory(String categoryName) {
+			  
 		    	List<ProductItem> categoryProducts = new ArrayList<>();
+		    	
 		    	if (producter == null || producter.getAllProducts() == null) {
+		    		
 		    		System.out.println("Product manager not initialized");
 		    		return categoryProducts;
+		    		
 		    	}
+		    	
 		    	for (ProductItem item : producter.getAllProducts()) {
+		    		
 		    	    if (item.getCategory().equalsIgnoreCase(categoryName)) {
+		    	    	
 		    	        categoryProducts.add(item);
+		    	        
 		    	    }
 		    	}
-		    	return categoryProducts;		    	
-	}
+		    	
+		    	return categoryProducts;		
+		    	
+		  }
 	
 		  public List<ProductItem> getAllProducts() {
+			  
 		    	if (producter == null) {
+		    		
 		    		return new ArrayList<>();
+		    		
 		    	}
+		    	
 		    	return producter.getAllProducts();
+		    	
 		    }
 		  
 		  
 	public Product getProducter() {
+		
 		return producter;
+		
 	}
 
 	public List<String> getCatNames(){ 
+		
 		return CatNames; 
+		
 		}
+	
     public List<String> getCatImgNames(){ 
+    	
     	return CatImgNames; 
+    	
     	}
 }
