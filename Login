@@ -19,26 +19,34 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Login{
+	
 	        private Main mainstage;
 			private Stage stage;
+			
 			public Login(Stage stage , Main mainstage) {
+				
 				this.stage=stage;
 				this.mainstage = mainstage;
+				
 			}
+			
 	        TextField user_name = new TextField();
 		
-public void start(Stage MainStage) throws Exception {
+	        public void start(Stage MainStage) throws Exception {
 	
     	  try {
 
-    		  File logFile = new File("src/Keke/USERS.txt");
+    		  File logFile = new File("C:\\\\Users\\\\Admin\\\\eclipse-workspace\\\\Project_142\\\\src\\\\Project_142\\\\USERS.txt");
     		  Scanner sc = new Scanner(logFile);
+    		  
     		  String name = "";
     		  String password = "";
     		  String names [] = new String[20];
     		  String passwords [] = new String[20];
     		  int i = 0;
+    		  
     		  while (sc.hasNextLine()) {
+    			  
     		  String Test = sc.nextLine();
               String[] logSplit = Test.split(" ");
               name = logSplit[0];
@@ -46,11 +54,12 @@ public void start(Stage MainStage) throws Exception {
               names[i] = name;
               passwords[i] = password;
               i++;
+              
     		  }
 
     		        Text titleText = new Text("FREEDOM");
     		        titleText.setFont(Font.font("Arial", 72));
-    		        Image keffiyehPattern = new Image("file:\\C:\\Users\\ahmad\\eclipse-workspace\\Project\\src\\Keke\\FLAG.jpg");
+    		        Image keffiyehPattern = new Image("file:///C:/Users/Admin/eclipse-workspace/Project_142/src/Project_142/AL.jpeg");
     		        titleText.setFill(new ImagePattern(keffiyehPattern));
 
 
@@ -63,7 +72,7 @@ public void start(Stage MainStage) throws Exception {
     		        HBox buttonBox = new HBox(LogButton);
     		        buttonBox.setAlignment(Pos.CENTER);
 
-    		        Image flagImage = new Image("file:\\C:\\Users\\ahmad\\eclipse-workspace\\Project\\src\\Keke\\AL2.jpg");
+    		        Image flagImage = new Image("file:///C:/Users/Admin/eclipse-workspace/Project_142/src/Project_142/FLAG.jpg");
     		        ImageView flagView = new ImageView(flagImage);
     		        flagView.setFitWidth(380);
     		        flagView.setPreserveRatio(true);
@@ -75,8 +84,11 @@ public void start(Stage MainStage) throws Exception {
     		        Scene firstSc = new Scene(root, 500, 550);
 
     		        firstSc.setOnKeyPressed(e -> {
+    		        	
     		            if (e.getCode() == KeyCode.ENTER) {
+    		            	
     		                LogButton.fire();
+    		                
     		            }
     		        });
 
@@ -85,39 +97,62 @@ public void start(Stage MainStage) throws Exception {
     		        MainStage.show();
     		        
               LogButton.setOnAction(e -> {
+            	  
         		  int good = 0;
+        		  
             	  for (int j = 0; j < passwords.length; j++) {
+            		  
             		  if(user_name.getText().equals(names[j]) && Password.getText().equals(passwords[j]))
+            			  
             			  good++;
+            		  
 				}
+            	  
             	 if (good >= 1)
+            		 
 					try {
+						
 						mainstage.showMain(stage);
-					} catch (Exception e1) {
+						
+					} 
+            	 
+            	 catch (Exception e1) {
 	
 						e1.printStackTrace();
+						
 					}
+            	 
 				else
+					
                     wrong("wrong userName or password");
             	 
             	  });
+              
     		  sc.close();
+    		  
     	  }
+    	  
     	  catch (Exception e) {
+    		  
     		  System.out.print("opps");
     		  e.printStackTrace();
+    		  
     	  }
       }
-public String getUSER () {
-	return user_name.getText();
-}
+
+		public String getUSER () {
+			
+			return user_name.getText();
+			
+		}
 
      
       public void wrong(String message) {
-    	  Alert alert = new Alert(Alert.AlertType.WARNING);
+    	  
+    	Alert alert = new Alert(Alert.AlertType.WARNING);
   		alert.setHeaderText(null);
   		alert.setContentText(message);
   		alert.showAndWait();
-      }
-      
+  		
+      }  
 }
