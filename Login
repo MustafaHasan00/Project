@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -6,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -30,10 +32,17 @@ public class Login{
 				
 			}
 			
-	        TextField user_name = new TextField();
+			TextField user_name = new TextField();
 		
 	        public void start(Stage MainStage) throws Exception {
-	
+	        	
+	        	GridPane pane  = new GridPane();
+	        	
+	        	pane.setAlignment(Pos.CENTER);
+	        	pane.setPadding(new Insets(20,20,20,20));
+	        	pane.setVgap(8);
+	        	pane.setHgap(8);
+	        	
     	  try {
 
     		  File logFile = new File("C:\\\\Users\\\\Admin\\\\eclipse-workspace\\\\Project_142\\\\src\\\\Project_142\\\\USERS.txt");
@@ -62,11 +71,14 @@ public class Login{
     		        Image keffiyehPattern = new Image("file:///C:/Users/Admin/eclipse-workspace/Project_142/src/Project_142/AL.jpeg");
     		        titleText.setFill(new ImagePattern(keffiyehPattern));
 
-
+    		        
+    		        
     		        user_name.setPromptText("Username");
-
+    		        
     		        PasswordField Password = new PasswordField();
+    		        
     		        Password.setPromptText("Password");
+    		        
 
     		        Button LogButton = new Button("Login");
     		        HBox buttonBox = new HBox(LogButton);
@@ -77,11 +89,15 @@ public class Login{
     		        flagView.setFitWidth(380);
     		        flagView.setPreserveRatio(true);
 
-    		        VBox root = new VBox(20, titleText, user_name, Password, buttonBox, flagView);
-    		        root.setAlignment(Pos.TOP_CENTER);
-    		        root.setStyle("-fx-padding: 20;");
+    		        VBox root = new VBox(10);
+    		        root.getChildren().add(titleText);
+    		        root.getChildren().add(user_name);
+    		        root.getChildren().add(Password);
+    		        root.getChildren().add(buttonBox);
+    		        root.getChildren().add(flagView);
+    		        pane.add(root, 0, 4);
 
-    		        Scene firstSc = new Scene(root, 500, 550);
+    		        Scene firstSc = new Scene(pane, 500, 550);
 
     		        firstSc.setOnKeyPressed(e -> {
     		        	
@@ -91,7 +107,7 @@ public class Login{
     		                
     		            }
     		        });
-
+    		        
     		        MainStage.setScene(firstSc);
     		        MainStage.setTitle("FREEDOM");
     		        MainStage.show();
