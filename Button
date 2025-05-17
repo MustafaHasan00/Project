@@ -1,12 +1,19 @@
+package Project_142;
+
+import java.awt.Color;
+
 import com.sun.org.apache.xpath.internal.operations.Minus;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
@@ -16,104 +23,119 @@ import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class Main extends Application{
-	
+public class Main extends Application {
+
 	int bought_items_price = 0;
 	int q = 1;
 	Login login;
-	
+
 	public void start(Stage MainStage) throws Exception {
 		
-		login = new Login(MainStage , this);
-       
-		
-        login.start(MainStage);
-        
+		GridPane pane  = new GridPane();
+    	
+    	pane.setPadding(new Insets(20,20,20,20));
+    	pane.setVgap(8);
+    	pane.setHgap(8);
 
-        
-        MainStage.setTitle("The thing");
-       
-       
+		login = new Login(MainStage, this);
+
+		login.start(MainStage);
+
+		MainStage.setTitle("The thing");
+
 	}
-	
+
 	public void showMain(Stage stage) {
 
+		String USER = login.getUSER();
 
-	      String  USER = login.getUSER();
-	      
-          Label helloUser = new Label("hello " + USER);
-          helloUser.setFont(Font.font("Arial", 48));
-          HBox HelloUser = new HBox(helloUser);
-          BorderPane comf = new BorderPane();
-          comf.setTop(HelloUser);
-          HelloUser.setAlignment(Pos.TOP_CENTER);
-          Scene Sc = new Scene(comf, 900, 700);
-          
-          TextField quantity = new TextField(String.valueOf(q));
-          quantity.setPrefColumnCount(1);
-          
-          
-          Button plus = new Button("+");
-            
-            plus.setOnAction(e -> {
-                
-          	 q++;
-          	  quantity.setText(String.valueOf(q));
-          	  
-            });
-            
-            Button minus = new Button("-");
-            
-            minus.setOnAction(e -> {
-                
-          	  if(q >= 2) {
-          		  
-          	  q--;
-          	  
-          	  quantity.setText(String.valueOf(q));
-          	  
-          	 }
-          	  
-          	  else if (q < 2) {
-          		  
-                    wrong("The quantity should be at least 1");
+		
 
-          	  }
-           });
-            
-            
-            Button cart = new Button("🛒");
-            cart.setStyle("-fx-font-size: 16px;");
+		TextField quantity = new TextField(String.valueOf(q));
+		quantity.setPrefColumnCount(1);
 
-            
-            HBox root = new HBox(20,plus,quantity,minus,cart);
-            
-            root.setAlignment(Pos.BOTTOM_RIGHT);
-            root.setStyle("-fx-padding: 20;");
-            HBox All = new HBox(root,comf);
-            Scene scene = new Scene(All , 500,400);
-            
-            stage.setScene(scene);
+		Alert success = new Alert(AlertType.INFORMATION);
+        
+		success.setTitle("Successfully");
+		success.setWidth(60);
+		success.setHeight(60);
+		
+		Alert wrong = new Alert(AlertType.WARNING);
+        
+		success.setTitle(" ");
+		success.setWidth(60);
+		success.setHeight(60);
+		
+		Button plus = new Button("+");
 
-            
-            
-            
-            
-         }
-  	
-  		public void wrong(String message) {
-          Alert alert = new Alert(Alert.AlertType.WARNING);
-          alert.setHeaderText(null);
-          alert.setContentText(message);
-          alert.showAndWait();
-          
-       }
-	
+		plus.setOnAction(e -> {
+
+			q++;
+			quantity.setText(String.valueOf(q));
+
+		});
+
+		Button minus = new Button("-");
+
+		minus.setOnAction(e -> {
+
+			if (q >= 2) {
+
+				q--;
+
+				quantity.setText(String.valueOf(q));
+
+			}
+
+			else if (q < 2) {
+
+				wrong.setHeaderText( "The quantity should be at least 1");
+				wrong.showAndWait();
+
+			}
+		});
+		
+
+		Button cart = new Button("🛒");
+		
+		cart.setStyle("-fx-font-size: 15px;");
+		
+		cart.setOnAction(e -> {
+
+			if (q >= 1) {
+
+				success.setHeaderText("Added succesfully");
+				success.showAndWait();
+
+			}
+
+			else if (q <= 0) {
+
+				wrong.setHeaderText( "The quantity should be at least 1");
+				wrong.showAndWait();
+				
+			}
+		});
+		
+		
+
+		HBox root = new HBox(3,plus, quantity, minus, cart);
+
+		root.setAlignment(Pos.BOTTOM_RIGHT);
+		
+		Scene scene = new Scene(root, 500, 400);
+
+		stage.setScene(scene);
+
+	}
+
+
 	public static void main(String args[]) {
+		
 		Application.launch(args);
+		
 	}
 }
